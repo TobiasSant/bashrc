@@ -13,7 +13,7 @@ git_branch() {
 }
 git_status() {
   if [ $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' | wc -l) -ge 1 ]; then
-    if [ $(git status | wc -l) -gt 3 ]; then
+    if [ $(git status | wc -l) -gt 4 ]; then
       echo "+"
     fi
   fi
