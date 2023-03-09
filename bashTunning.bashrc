@@ -1,8 +1,5 @@
 # Tunning section
 
-# commit al #
-alias comi='git commit -a'
-
 ### Git ###
 git_ico() {
   if [ $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' | wc -l) -ge 1 ]; then
