@@ -29,7 +29,7 @@ git_log() {
 git_fetch() {
   if [ $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' | wc -l) -ge 1 ]; then
     if [ $(git fetch && git status -uno | grep "pull" | wc -l) -ge 1 ]; then
-      echo "cagada"
+      echo "pull"
     fi
   fi
 }
