@@ -1,5 +1,11 @@
 #!/bin/bash
 
+echo -e "\e[35m\nInstall openssh-server \e[0m"
+sudo apt-get install openssh-server
+
+echo -e "\e[35m\nEnable ssh \e[0m"
+sudo systemctl enable ssh
+
 echo -e "\e[35m\nex: /home/user/.ssh/git \e[0m"
 ssh-keygen -t ecdsa 
 
