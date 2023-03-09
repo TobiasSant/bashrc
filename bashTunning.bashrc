@@ -28,6 +28,14 @@ git_log() {
   fi
 }
 
+git_fetch() {
+  if [ $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' | wc -l) -ge 1 ]; then
+    if [ $(git fetch && git status -uno | grep "pull" | wc -l) -ge 1 ]; then
+      echo "cagada"
+    fi
+  fi
+}
+
 ### add Color ANSI code ###
 lGrey='\e[0;37m'
 red='\e[0;31m'
@@ -45,4 +53,4 @@ savePoint='\e[u'
 nextLine='\e[G\e[1B'
 jumpChar='\e[10C'
 
-export PS1="\[$green\]\u@\h\[$reset\]:\[$blue\]\w\[$lGrey\]\$(git_ico)\[$red\]\$(git_status)\$(git_log)\[$lPurple\]\$(git_branch)\[$reset\]\$ "
+export PS1="\[$green\]\u@\h\[$reset\]:\[$blue\]\w\[$lGrey\]\$(git_ico)\[$red\]\$(git_status)\$(git_log)\$(git_fetch)\[$lPurple\]\$(git_branch)\[$reset\]\$ "
