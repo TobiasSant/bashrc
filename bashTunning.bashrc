@@ -2,14 +2,20 @@
 
 ### Git ###
 git_ico() {
-  echo '⎇ '
+  if [ $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' | wc -l) -ge 1 ]; then
+    echo '⎇ '
+  fi
 }
 git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  if [ $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' | wc -l) -ge 1 ]; then
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  fi
 }
 git_status() {
-  if [ $(git status | wc -l) -gt 3 ]; then
-    echo "+"
+  if [ $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' | wc -l) -ge 1 ]; then
+    if [ $(git status | wc -l) -gt 3 ]; then
+      echo "+"
+    fi
   fi
 }
 
