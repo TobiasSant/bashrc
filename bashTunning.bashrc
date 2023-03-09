@@ -16,6 +16,9 @@ git_status() {
     if [ $(git status | wc -l) -gt 4 ]; then
       echo "+"
     fi
+    if [ $(git log --branches --not --remotes | wc -l) -gt 1 ]; then
+      echo "?"
+    fi
   fi
 }
  
