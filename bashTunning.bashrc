@@ -18,7 +18,7 @@ git_status() {
     fi
   fi
 }
-
+ 
 
 ### add Color ANSI code ###
 lGrey='\e[0;37m'
