@@ -20,10 +20,8 @@ git_status() {
 }
 git_log() {
   if [ $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' | wc -l) -ge 1 ]; then
-    if [ $(git status | wc -l) -gt 4 ]; then
-      if [ $(git log --branches --not --remotes | wc -l) -ge 1 ]; then
+    if [ $(git log --branches --not --remotes | wc -l) -ge 1 ]; then
       echo "?"
-      fi
     fi
   fi
 }
