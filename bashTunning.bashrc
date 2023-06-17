@@ -17,7 +17,7 @@ git_ico() {
 }
 
 git_branch() {
-  trap 'actualizar_variable' DEBUG
+  trap 'actualizar_variable' DEBUG 
   if [ $? -eq 0 ] && [ -n "$branch_name" ]; then
     local prefix_status=""
     local prefix_log=""
