@@ -5,15 +5,13 @@ git_branch() {
   local lPurple='\e[0;35m'
   local branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
   if [ $? -eq 0 ] && [ -n "$branch_name" ]; then
-    if [ "$(pwd | grep -c "/nodo/")" -eq 0 ]; then
-      local status_output=$(git status --porcelain)
-      local log_output=$(git log --branches --not --remotes --quiet)
-      if [ -n "$status_output" ]; then
-        prefix_status="+"
-      fi
-      if [ -n "$log_output" ]; then
-        prefix_log="?"
-      fi
+    local status_output=$(git status --porcelain)
+    local log_output=$(git log --branches --not --remotes --quiet)
+    if [ -n "$status_output" ]; then
+      prefix_status="+"
+    fi
+    if [ -n "$log_output" ]; then
+      prefix_log="?"
     fi
     echo -e "⎇ $red$prefix_status$prefix_log$lPurple($branch_name)"
   fi
