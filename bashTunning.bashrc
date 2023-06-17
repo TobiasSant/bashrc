@@ -1,28 +1,33 @@
 # Tunning section
 
+# Función de actualización de variable
+actualizar_variable() {
+  branch_name="$(git symbolic-ref --short HEAD 2>/dev/null)"
+}
+
+# Comando de trampa para actualizar la variable después de cada comando
+trap 'actualizar_variable' DEBUG
+
 ### Git ###
 git_ico() {
-  if [ $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' | wc -l) -ge 1 ]; then
+  trap 'actualizar_variable' DEBUG
+  if [ $? -eq 0 ] && [ -n "$branch_name" ]; then
     echo '⎇ '
   fi
 }
+
 git_branch() {
-  if [ $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' | wc -l) -ge 1 ]; then
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-  fi
-}
-git_status() {
-  if [ $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' | wc -l) -ge 1 ]; then
-    if [ $(git status | wc -l) -gt 4 ]; then
-      echo "+"
+  trap 'actualizar_variable' DEBUG
+  if [ $? -eq 0 ] && [ -n "$branch_name" ]; then
+    local prefix_status=""
+    local prefix_log=""
+    if [ $(git status --porcelain | wc -l) -gt 0 ]; then
+      prefix_status="+"
     fi
-  fi
-}
-git_log() {
-  if [ $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' | wc -l) -ge 1 ]; then
     if [ $(git log --branches --not --remotes | wc -l) -ge 1 ]; then
-      echo "?"
+      prefix_log="?"
     fi
+    echo "$prefix_status$prefix_log ($branch_name)"
   fi
 }
 # git_fetch() {
@@ -51,4 +56,4 @@ savePoint='\e[u'
 nextLine='\e[G\e[1B'
 jumpChar='\e[10C'
 
-export PS1="\[$green\]\u@\h\[$reset\]:\[$blue\]\w\[$lGrey\]\$(git_ico)\[$red\]\$(git_status)\$(git_log)\[$lPurple\]\$(git_branch)\[$reset\]\$ "
+export PS1="\[$green\]\u@\h\[$reset\]:\[$blue\]\w\[$lGrey\]\$(git_ico)\[$lPurple\]\$(git_branch)\[$reset\]\$ "
