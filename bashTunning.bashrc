@@ -15,7 +15,7 @@ git_branch() {
         prefix_log="?"
       fi
     fi
-    echo -e "⎇$red$prefix_status$prefix_log$lPurple ($branch_name)"
+    echo -e "⎇ $red$prefix_status$prefix_log$lPurple($branch_name)"
   fi
 }
 
