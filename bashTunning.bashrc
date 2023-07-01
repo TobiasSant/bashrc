@@ -1,5 +1,7 @@
 # Tunning section
 
+alias cd..='cd ..'
+
 git_branch() {
   local red='\e[0;31m'
   local lPurple='\e[0;35m'
