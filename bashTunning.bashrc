@@ -5,7 +5,7 @@ alias cd..='cd ..'
 git_branch() {
   local red='\e[0;31m'
   local lPurple='\e[0;35m'
-  local color_branch="$lPurple"
+  local color_branch=$(tput sgr0)
   local branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
   if [ $? -eq 0 ] && [ -n "$branch_name" ]; then
     local status_output=$(git status --porcelain)
@@ -22,7 +22,7 @@ git_branch() {
         color_branch="$red"
         ;;
     esac
-    echo -e "⎇ $red$prefix_status$prefix_log$color_branch($branch_name)"
+    echo -e "⎇ $red$prefix_status$prefix_log$lPurple($branch_name)$color_branch"
   fi
 }
 
@@ -51,4 +51,5 @@ savePoint='\e[u'
 nextLine='\e[G\e[1B'
 jumpChar='\e[10C'
 
-export PS1="\[$green\]\u@\h\[$reset\]:\[$blue\]\w\[$lGrey\]\$(git_branch)\[$reset\]\$ "
+# export PS1="\[$green\]\u@\h\[$reset\]:\[$blue\]\w\[$lGrey\]\$(git_branch)\[$reset\]\$ "
+export PS1="\[$green\]\u@\h\[$reset\]:\[$blue\]\w\[$lGrey\]\[$reset\]\$(git_branch)\$ "
