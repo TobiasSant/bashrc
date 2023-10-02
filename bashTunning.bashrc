@@ -5,6 +5,7 @@ alias cd..='cd ..'
 git_branch() {
   local red='\e[0;31m'
   local lPurple='\e[0;35m'
+  local color_branch="$lPurple"
   local branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
   if [ $? -eq 0 ] && [ -n "$branch_name" ]; then
     local status_output=$(git status --porcelain)
@@ -15,7 +16,13 @@ git_branch() {
     if [ -n "$log_output" ]; then
       prefix_log="?"
     fi
-    echo -e "⎇ $red$prefix_status$prefix_log$lPurple($branch_name)"
+    local branch_name_lower=$(echo "$branch_name" | tr '[:upper:]' '[:lower:]')
+    case "$branch_name_lower" in
+      "main" | "master" | "dev" | "develop" )
+        color_branch="$red"
+        ;;
+    esac
+    echo -e "⎇ $red$prefix_status$prefix_log$color_branch($branch_name)"
   fi
 }
 
