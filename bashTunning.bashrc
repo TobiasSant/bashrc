@@ -18,8 +18,13 @@ git_branch() {
     fi
     local branch_name_lower=$(echo "$branch_name" | tr '[:upper:]' '[:lower:]')
     case "$branch_name_lower" in
-      "main" | "master" | "dev" | "develop" )
+      "dev" | "develop" )
         color_branch='\e[0;33m'
+        ;;
+    esac
+    case "$branch_name_lower" in
+      "main" | "master" )
+        color_branch="$red"
         ;;
     esac
     echo -e "⎇ $red$prefix_status$prefix_log$color_branch($branch_name)"
