@@ -1,6 +1,7 @@
 # Tunning section
 
 alias cd..='cd ..'
+alias pyenv-i='pyenv install $(cat .python-version)'
 
 git_branch() {
   local red='\e[0;31m'
