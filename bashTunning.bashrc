@@ -1,6 +1,7 @@
 # Tunning section
 
 alias cd..='cd ..'
+alias claer='clear'
 alias pyenv-i='pyenv install $(cat .python-version)'
 
 git_branch() {
