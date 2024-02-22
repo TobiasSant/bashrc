@@ -2,7 +2,11 @@
 
 alias cd..='cd ..'
 alias claer='clear'
+alias celar='clear'
 alias pyenv-i='pyenv install $(cat .python-version)'
+alias myfont='echo "-> Agregando repositorio universe..." && sudo add-apt-repository universe -y && \
+echo "-> Actualizando lista de paquetes..." && sudo apt update -y && \
+echo "-> Instalando fuentes Fira Code..." && sudo apt install fonts-firacode -y'
 
 git_branch() {
   local red='\e[0;31m'
