@@ -8,6 +8,7 @@ alias myfont='echo "-> Agregando repositorio universe..." && sudo add-apt-reposi
 echo "-> Actualizando lista de paquetes..." && sudo apt update -y && \
 echo "-> Instalando fuentes Fira Code..." && sudo apt install fonts-firacode -y'
 alias run-warp='WARP_ENABLE_WAYLAND=0 warp-terminal'
+alias fzf-i='git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install && echo "-> source ~/.bashrc"'
 
 git_branch() {
   local red='\e[0;31m'
