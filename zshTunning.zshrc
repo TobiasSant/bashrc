@@ -1,5 +1,8 @@
 # Tunning section
 
+setopt PROMPT_SUBST
+
+# Función para obtener el nombre de la rama actual
 git_branch() {
   local red='\e[0;31m'
   local lPurple='\e[0;35m'
@@ -29,32 +32,32 @@ git_branch() {
   fi
 }
 
-# git_fetch() {
-#   if [ $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' | wc -l) -ge 1 ]; then
-#     if [ $(git fetch && git status -uno | grep "pull" | wc -l) -ge 1 ]; then
-#       echo "pull"
-#     fi
-#   fi
-# }
+# Definiición del prompt con colores
+autoload -Uz colors
+colors
 
-### add Color ANSI code ###
-lGrey='\e[0;37m'
-red='\e[0;31m'
-lPurple='\e[0;35m'
-green='\e[1;32m'
-blue='\e[1;34m'
-reset=$(tput sgr0)   # use color setting in terminal Preference
-# get more color on this site:
-# http://misc.flogisoft.com/bash/tip_colors_and_formatting
-# https://www.shellhacks.com/bash-colors/
+# Personalización del prompt
+PROMPT='%F{green}%n@%m%f:%F{blue}%~%f$(git_branch)%f$ '
 
-### pos ANSI code ###
-save='\e[s'
-savePoint='\e[u'
-nextLine='\e[G\e[1B'
-jumpChar='\e[10C'
+#zstyle :compinstall filename '/home/%n/.zshrc'
+#autoload -Uz compinit
+#zstyle ':completion:*' menu select
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+#zstyle ':completion:*' rehash true
+#zmodload zsh/complist
+#compinit
 
-export PS1="\[$green\]\u@\h\[$reset\]:\[$blue\]\w\[$lGrey\]\$(git_branch)\[$reset\]\$ "
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]=none
+ZSH_HIGHLIGHT_STYLES[path_prefix]=none
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#404040'
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 # Alias section
 
