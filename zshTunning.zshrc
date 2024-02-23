@@ -39,24 +39,24 @@ colors
 # Personalización del prompt
 PROMPT='%F{green}%n@%m%f:%F{blue}%~%f$(git_branch)%f$ '
 
-#zstyle :compinstall filename '/home/%n/.zshrc'
-#autoload -Uz compinit
-#zstyle ':completion:*' menu select
-#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-#zstyle ':completion:*' rehash true
-#zmodload zsh/complist
-#compinit
+zstyle :compinstall filename '/home/%n/.zshrc'
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' rehash true
+zmodload zsh/complist
+compinit
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[path]=none
-ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#404040'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]=none
+ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 # Alias section
@@ -72,3 +72,13 @@ alias myfont='echo "-> Agregando repositorio universe..." && sudo add-apt-reposi
 echo "-> Actualizando lista de paquetes..." && sudo apt update -y && \
 echo "-> Instalando fuentes Fira Code..." && sudo apt install fonts-firacode -y'
 alias fzf-i='git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install && echo "-> source ~/.bashrc"'
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+
+
+
+
+
+# FIN_COCO_LOCO
