@@ -7,6 +7,7 @@ alias pyenv-i='pyenv install $(cat .python-version)'
 alias myfont='echo "-> Agregando repositorio universe..." && sudo add-apt-repository universe -y && \
 echo "-> Actualizando lista de paquetes..." && sudo apt update -y && \
 echo "-> Instalando fuentes Fira Code..." && sudo apt install fonts-firacode -y'
+alias run-warp='WARP_ENABLE_WAYLAND=0 warp-terminal'
 
 git_branch() {
   local red='\e[0;31m'
