@@ -9,6 +9,8 @@ elif [ "$1" == "zshrc" ]; then
         echo "Zsh is not installed. Installing..."
         sudo apt-get install zsh
         echo "Installing git repositories for Zsh plugins"
+        git clone https://github.com/mafredri/zsh-async ~/.zsh/zsh-async
+        git clone https://github.com/allanjamesvestal/fast-zsh-nvm ~/.zsh/fast-zsh-nvm
         git clone https://github.com/zap-zsh/supercharge ~/.zsh/supercharge
         git clone https://github.com/Aloxaf/fzf-tab ~/.zsh/fzf-tab
         git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
