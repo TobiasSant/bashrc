@@ -15,7 +15,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # nvm loading
-AUTO_LOAD_NVMRC_FILE=true
+export AUTO_LOAD_NVMRC_FILES=true
 
 # zstyle :compinstall filename '/home/%n/.zshrc'
 # Colored auto completion
