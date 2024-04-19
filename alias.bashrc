@@ -5,6 +5,7 @@ alias claer='clear'
 alias celar='clear'
 alias pyenv-i='pyenv install $(cat .python-version)'
 alias run-warp='WARP_ENABLE_WAYLAND=0 warp-terminal'
+alias gitcd='git checkout develop'
 
 # Install tools
 alias myfont-i='echo "-> Agregando repositorio universe..." && sudo add-apt-repository universe -y && \
