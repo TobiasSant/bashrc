@@ -8,6 +8,12 @@ alias run-warp='WARP_ENABLE_WAYLAND=0 warp-terminal'
 alias gitcd='git checkout develop'
 alias gitch='git checkout'
 
+docker-clear() {
+    find "/home/toto" -name "docker-compose.yml" -execdir docker-compose down --volumes --remove-orphans \;
+    docker system prune -a --volumes -f
+    docker volume prune -f
+}
+
 # Install tools
 alias myfont-i='echo "-> Agregando repositorio universe..." && sudo add-apt-repository universe -y && \
 echo "-> Actualizando lista de paquetes..." && sudo apt update -y && \
