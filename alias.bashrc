@@ -9,7 +9,7 @@ alias gitcd='git checkout develop'
 alias gitch='git checkout'
 
 docker-clear() {
-    find "/home/toto" -name "docker-compose.yml" -execdir docker-compose down --volumes --remove-orphans \;
+    find ~ -name "docker-compose.yml" -execdir docker-compose down --volumes --remove-orphans \;
     docker system prune -a --volumes -f
     docker volume prune -f
 }
