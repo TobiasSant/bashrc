@@ -70,8 +70,19 @@ git_branch() {
   fi
 }
 
+get_trimmed_path() {
+  local path="${PWD/#$HOME/~}"
+  local components=("${(@s:/:)path}")
+  
+  if (( ${#components[@]} > 3 )); then
+    echo "${components[1]}/.../${components[-2]}/${components[-1]}"
+  else
+    echo "$path"
+  fi
+}
+
 # Prompt configuration
-PROMPT='%F{green}%n@%m%f:%F{blue}%~%f$(git_branch)%f$ '
+PROMPT='%F{green}%n@%m%f:%F{blue}$(get_trimmed_path)%f$(git_branch)%f$ '
 
 # Alias section
 
